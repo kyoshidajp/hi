@@ -1,4 +1,4 @@
-use chrono::{Local, DateTime, Duration, TimeZone};
+use chrono::{DateTime, Duration, Local, TimeZone};
 
 const WORKING_HOURS: i64 = 8;
 const LUNCH_HOURS: i64 = 1;
@@ -8,7 +8,10 @@ pub fn morning(now: DateTime<Local>) -> String {
     let end_of_work_time = now + Duration::hours(WORKING_HOURS + LUNCH_HOURS);
     let end_of_work_time_str = end_of_work_time.format("%H:%M:%S").to_string();
 
-    format!("🏢 おはようございます。 ({}-{})", now_str, end_of_work_time_str)
+    format!(
+        "🏢 おはようございます。 ({}-{})",
+        now_str, end_of_work_time_str
+    )
 }
 
 pub fn lunch(now: DateTime<Local>) -> String {

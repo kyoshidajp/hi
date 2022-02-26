@@ -1,7 +1,7 @@
 mod hi;
 
-use chrono::{DateTime, Local, TimeZone};
 use argh::FromArgs;
+use chrono::{DateTime, Local, TimeZone};
 
 #[derive(FromArgs)]
 /// Arguments
@@ -24,7 +24,7 @@ fn main() {
     println!("{}", message);
 }
 
-fn message (now: DateTime<Local>, slot: String) -> String {
+fn message(now: DateTime<Local>, slot: String) -> String {
     match &*slot {
         "morning" => hi::morning(now),
         "lunch" => hi::lunch(now),
