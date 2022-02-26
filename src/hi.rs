@@ -16,7 +16,7 @@ pub fn morning(now: DateTime<Local>) -> String {
 
 pub fn lunch(now: DateTime<Local>) -> String {
     let now_str = now.format("%H:%M:%S").to_string();
-    let end_of_work_time = now + Duration::hours(1);
+    let end_of_work_time = now + Duration::hours(LUNCH_HOURS);
     let end_of_work_time_str = end_of_work_time.format("%H:%M:%S").to_string();
 
     format!("🍱 休憩します。 ({}-{})", now_str, end_of_work_time_str)
