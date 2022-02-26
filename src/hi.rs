@@ -1,4 +1,4 @@
-use chrono::{DateTime, Duration, Local, TimeZone};
+use chrono::*;
 
 const WORKING_HOURS: i64 = 8;
 const LUNCH_HOURS: i64 = 1;

@@ -1,7 +1,7 @@
 mod hi;
 
 use argh::FromArgs;
-use chrono::{DateTime, Local, TimeZone};
+use chrono::{DateTime, Local};
 
 #[derive(FromArgs)]
 /// Arguments
@@ -18,7 +18,7 @@ fn default_time_slot() -> String {
 fn main() {
     let arg: Arg = argh::from_env();
     let now: DateTime<Local> = Local::now();
-    let slot = arg.time_slot.to_string();
+    let slot = arg.time_slot;
     let message = message(now, slot);
 
     println!("{}", message);
