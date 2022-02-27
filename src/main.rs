@@ -28,6 +28,7 @@ fn main() {
     dotenv().ok();
 
     do_hi(slot, post_to_slack);
+    hi::add_event_to_google_calendar();
 }
 
 fn do_hi(slot: String, post_to_slack: bool) {
