@@ -12,11 +12,11 @@ Greeting before you starting, taking a lunch break, or finishing work.
 🏢 おはようございます。 (09:10:28-18:10:28)
 
 # Before taking a lunch break
-% hi --time-slot morning
+% hi --time-slot lunch
 🍱 休憩します。 (12:12:23-13:12:23)
 
 # Before finishing work
-% target/debug/hi --time-slot evening
+% hi --time-slot evening
 ♨️ お疲れさまでした。
 ```
 
