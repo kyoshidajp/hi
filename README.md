@@ -1,6 +1,9 @@
 # hi
 Greeting before you starting, taking a lunch break, or finishing work.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/kyoshidajp/hi/blob/main/LICENSE)
+![hi](https://github.com/kyoshidajp/hi/workflows/hi/badge.svg)
+
 ## Examples
 
 ```sh
@@ -13,6 +16,7 @@ Greeting before you starting, taking a lunch break, or finishing work.
 🍱 休憩します。 (12:12:23-13:12:23)
 
 # Before finishing work
+% target/debug/hi --time-slot evening
 ♨️  お疲れさまでした。
 ```
 
