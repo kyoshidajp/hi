@@ -1,7 +1,14 @@
 use chrono::*;
+use slack_hook::{PayloadBuilder, Slack};
 
 const WORKING_HOURS: i64 = 8;
 const LUNCH_HOURS: i64 = 1;
+
+// Environments keys
+const SLACK_WEB_HOOK_URL_KEY: &str = "SLACK_WEB_HOOK_URL";
+const SLACK_CHANNEL_KEY: &str = "SLACK_CHANNEL";
+const SLACK_USER_NAME_KEY: &str = "SLACK_USER_NAME";
+const SLACK_ICON_EMOJI_KEY: &str = "SLACK_ICON_EMOJI";
 
 pub fn morning(now: DateTime<Local>) -> String {
     let now_str = now.format("%H:%M:%S").to_string();
@@ -24,6 +31,26 @@ pub fn lunch(now: DateTime<Local>) -> String {
 
 pub fn evening() -> String {
     "♨️  お疲れさまでした。".to_string()
+}
+
+pub fn post_to_slack(message: String) {
+    let web_hook_url = dotenv::var(SLACK_WEB_HOOK_URL_KEY).unwrap();
+    let channel = dotenv::var(SLACK_CHANNEL_KEY).unwrap();
+    let user_name = dotenv::var(SLACK_USER_NAME_KEY).unwrap();
+    let icon_emoji = dotenv::var(SLACK_ICON_EMOJI_KEY).unwrap();
+
+    let slack = Slack::new(web_hook_url.as_str());
+    let payload = PayloadBuilder::new()
+        .text(message)
+        .channel(channel.as_str())
+        .username(user_name.as_str())
+        .icon_emoji(icon_emoji.as_str())
+        .build()
+        .unwrap();
+
+    if let Ok(ref s) = slack {
+        let _res = s.send(&payload);
+    }
 }
 
 #[cfg(test)]
