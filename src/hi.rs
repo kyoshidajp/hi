@@ -1,5 +1,6 @@
 use chrono::*;
 use slack_hook::{PayloadBuilder, Slack};
+use yup_oauth2 as oauth;
 
 const WORKING_HOURS: i64 = 8;
 const LUNCH_HOURS: i64 = 1;
@@ -51,6 +52,17 @@ pub fn post_to_slack(message: String) {
     if let Ok(ref s) = slack {
         let _res = s.send(&payload);
     }
+}
+
+pub fn add_event_to_google_calendar() {
+    let key = oauth::read_service_account_key("account_key.json");
+    let client = hyper::Client::builder().build(hyper_rustls::HttpsConnector::with_native_roots());
+    let access = oauth::ServiceAccountFlow::new(oauth::ServiceAccountFlowOpts { key, subject: None }).unwrap();
+ 
+    println!("{:?}",
+             access.token(&vec!["https://www.googleapis.com/auth/calendar.events"]).unwrap());
+ 
+    println!("{}, {}", client, access);
 }
 
 #[cfg(test)]
