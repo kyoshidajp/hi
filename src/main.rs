@@ -17,18 +17,19 @@ fn default_time_slot() -> String {
 
 fn main() {
     let arg: Arg = argh::from_env();
-    let now: DateTime<Local> = Local::now();
     let slot = arg.time_slot;
-    let message = message(now, slot);
 
-    println!("{}", message);
+    do_hi(slot);
 }
 
-fn message(now: DateTime<Local>, slot: String) -> String {
-    match &*slot {
+fn do_hi(slot: String) {
+    let now: DateTime<Local> = Local::now();
+    let message = match &*slot {
         "morning" => hi::morning(now),
         "lunch" => hi::lunch(now),
         "evening" => hi::evening(),
         _ => hi::morning(now),
-    }
+    };
+
+    println!("{}", message);
 }
