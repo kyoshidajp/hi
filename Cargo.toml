@@ -8,3 +8,5 @@ edition = "2021"
 [dependencies]
 chrono = "0.4"
 argh = "0.1.7"
+slack-hook = "0.8.0"
+dotenv = "0.15.0"
