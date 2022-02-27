@@ -17,7 +17,7 @@ Greeting before you starting, taking a lunch break, or finishing work.
 
 # Before finishing work
 % target/debug/hi --time-slot evening
-♨️  お疲れさまでした。
+♨️ お疲れさまでした。
 ```
 
 ## Post to Slack
