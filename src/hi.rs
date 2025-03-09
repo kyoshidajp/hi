@@ -59,13 +59,13 @@ mod tests {
 
     #[test]
     fn test_morning() {
-        let now = Local.ymd(2022, 2, 28).and_hms(9, 10, 28);
+        let now = Local.with_ymd_and_hms(2022, 2, 28, 9, 10, 28).unwrap();
         assert_eq!(morning(now), "🏢 おはようございます。 (09:10:28-18:10:28)");
     }
 
     #[test]
     fn test_lunch() {
-        let now = Local.ymd(2022, 2, 28).and_hms(12, 12, 23);
+        let now = Local.with_ymd_and_hms(2022, 2, 28, 12, 12, 23).unwrap();
         assert_eq!(lunch(now), "🍱 休憩します。 (12:12:23-13:12:23)");
     }
 
