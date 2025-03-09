@@ -1,0 +1,33 @@
+name: Release Rust Binary
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    name: Build and Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: build
+        run: cargo build --release
+
+      - name: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-rust-binary
+          path: target/release/hi
+
+      - name: upload to GitHub Releases
+        uses: softprops/action-gh-release@v2
+        with:
+          files: target/release/hi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
